@@ -549,6 +549,7 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
 	}else{
 		[result convertNSNullsToEmptyStrings];
 		[[NSUserDefaults standardUserDefaults] setObject:result forKey:kSHKFacebookUserInfo];
+		self.userInfo = result;
 		[self sendDidFinish];
 	}
 	[FBSession.activeSession close];	// unhook us

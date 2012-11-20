@@ -67,6 +67,8 @@ typedef enum
 	
 	BOOL quiet;
 	SHKSharerPendingAction pendingAction;
+	
+	NSDictionary *userInfo; // Will be set after getUserInfo is sucessful.
 }
 
 @property (nonatomic, retain) id <SHKSharerDelegate> shareDelegate;
@@ -79,6 +81,8 @@ typedef enum
 
 @property BOOL quiet;
 @property SHKSharerPendingAction pendingAction;
+
+@property (nonatomic, retain) NSDictionary *userInfo;
 
 
 

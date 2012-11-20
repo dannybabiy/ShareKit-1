@@ -494,20 +494,21 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 	if (ticket.didSucceed) {
 		
 		NSError *error = nil;
-		NSMutableDictionary *userInfo;
+		NSMutableDictionary *info;
 		Class serializator = NSClassFromString(@"NSJSONSerialization");
 		if (serializator) {
-			userInfo = [serializator JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+			info = [serializator JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
 		} else {
-			userInfo = [[JSONDecoder decoder] mutableObjectWithData:data error:&error];
+			info = [[JSONDecoder decoder] mutableObjectWithData:data error:&error];
 		}    
 		
 		if (error) {
 			SHKLog(@"Error when parsing json twitter user info request:%@", [error description]);
 		}
 		
-		[userInfo convertNSNullsToEmptyStrings];
-		[[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:kSHKTwitterUserInfo];
+		[info convertNSNullsToEmptyStrings];
+		[[NSUserDefaults standardUserDefaults] setObject:info forKey:kSHKTwitterUserInfo];
+		self.userInfo = info;
 		
 		[self sendDidFinish];
 		

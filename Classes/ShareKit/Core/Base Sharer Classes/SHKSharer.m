@@ -42,6 +42,7 @@
 @synthesize item, pendingForm, request;
 @synthesize lastError;
 @synthesize quiet, pendingAction;
+@synthesize userInfo;
 
 - (void)dealloc
 {
@@ -50,6 +51,7 @@
 	[pendingForm release];
 	[request release];
 	[lastError release];
+	[userInfo release];
 	
 	[super dealloc];
 }

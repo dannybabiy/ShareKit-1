@@ -209,7 +209,7 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 {		
 	if ([self twitterFrameworkAvailable]) {
 		[SHKTwitter logout];
-		return NO; 
+		return YES; // Since the intent is to know when it needs authorization.
 	}
 	return [self restoreAccessToken];
 }

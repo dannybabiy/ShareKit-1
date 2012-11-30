@@ -640,7 +640,9 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
 
 - (void) doSHKShow
 {
-    if (item.shareType == SHKShareTypeText || item.shareType == SHKShareTypeImage || item.shareType == SHKShareTypeURL)
+    if (item.shareType == SHKShareTypeText ||
+		item.shareType == SHKShareTypeImage ||
+		(item.shareType == SHKShareTypeURL && ![SHKCONFIG(useDepricatedFeedDialog) boolValue]))
     {
         [self showFacebookForm];
     }

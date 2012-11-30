@@ -218,7 +218,7 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
         [alertView show];
         [alertView release];
     }
-	if ([SHKCONFIG(useDepricatedFeedDialog) boolValue] && FBSession.activeSession.isOpen && !facebook) {
+	if ([SHKCONFIG(useDepricatedFeedDialog) boolValue] && FBSession.activeSession.isOpen) {
 		// Initiate a Facebook instance and properties
 		self.facebook = [[Facebook alloc]
 						 initWithAppId:FBSession.activeSession.appID
@@ -227,9 +227,7 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
         // Store the Facebook session information
 		self.facebook.accessToken = FBSession.activeSession.accessToken;
 		self.facebook.expirationDate = FBSession.activeSession.expirationDate;
-    } else {
-		self.facebook = nil;
-	}
+    }
 	if (authingSHKFacebook == self) {
 		authingSHKFacebook = nil;
 		[self release];
@@ -682,6 +680,18 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
 															 
 															 [self sendDidCancel];
 														 }else{
+															 
+															 if ([SHKCONFIG(useDepricatedFeedDialog) boolValue] && session.isOpen) {
+																 // Initiate a Facebook instance and properties
+																 self.facebook = [[Facebook alloc]
+																				  initWithAppId:session.appID
+																				  andDelegate:nil];
+																 
+																 // Store the Facebook session information
+																 facebook.accessToken = session.accessToken;
+																 facebook.expirationDate = session.expirationDate;
+															 }
+															 
 															 // If permissions granted, publish the story
 															 [self doNativeShow];
 														 }

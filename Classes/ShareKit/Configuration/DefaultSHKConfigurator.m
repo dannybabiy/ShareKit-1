@@ -104,6 +104,15 @@
 }
 
 /*
+ If you want to force use an old-style login flow, override this. For example, currently there are some issues on ios6 that if you
+ revoke access to your app after your inital grant, the session may become out of sync and keep throwing errors that aren't resolvable.
+ So for now, it seems to be safer to use FBSessionLoginBehaviorWithFallbackToWebView instead.
+ */
+- (FBSessionLoginBehavior)facebookSessionLoginBehaivor {
+	return FBSessionLoginBehaviorUseSystemAccountIfPresent;
+}
+
+/*
  With Facebook SDK3 they got rid of the Feed Dialog, but they talk about how to continue using it, so I'm not sure if/when it will completely go away.
  https://developers.facebook.com/docs/howtos/feed-dialog-using-ios-sdk/
  */

@@ -160,7 +160,7 @@ static SHKFacebook *requestingPermisSHKFacebook=nil;
 		if (allowLoginUI) [[SHKActivityIndicator currentIndicator] displayActivity:SHKLocalizedString(@"Logging In...")];
         
         [FBSession setActiveSession:session];
-        [session openWithBehavior:FBSessionLoginBehaviorUseSystemAccountIfPresent
+        [session openWithBehavior:SHKCONFIG(facebookSessionLoginBehaivor)
 				completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
 					if (allowLoginUI) [[SHKActivityIndicator currentIndicator] hide];
 					[self sessionStateChanged:session state:state error:error];

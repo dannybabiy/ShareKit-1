@@ -41,6 +41,7 @@
 #endif
 
 #import <Foundation/Foundation.h>
+#import "Facebook.h"
 
 @interface DefaultSHKConfigurator : NSObject 
 
@@ -56,6 +57,7 @@
 - (NSArray*)facebookWritePermissions;
 - (NSArray*)facebookReadPermissions;
 - (NSNumber*)forcePreIOS6FacebookPosting;
+- (FBSessionLoginBehavior)facebookSessionLoginBehaivor;
 - (NSString*)readItLaterKey;
 - (NSString*)diigoKey;
 - (NSNumber*)forcePreIOS5TwitterAccess;

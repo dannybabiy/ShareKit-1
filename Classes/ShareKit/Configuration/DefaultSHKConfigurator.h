@@ -58,6 +58,7 @@
 - (NSArray*)facebookReadPermissions;
 - (NSNumber*)forcePreIOS6FacebookPosting;
 - (FBSessionLoginBehavior)facebookSessionLoginBehaivor;
+- (NSNumber*)useDepricatedFeedDialog;
 - (NSString*)readItLaterKey;
 - (NSString*)diigoKey;
 - (NSNumber*)forcePreIOS5TwitterAccess;

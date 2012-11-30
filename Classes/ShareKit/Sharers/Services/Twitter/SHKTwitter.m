@@ -182,24 +182,23 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 
 - (BOOL)prepareItem {
 	
-	BOOL result = YES;
+	BOOL isURLAlreadyShortened = YES;
 	
 	if (item.shareType == SHKShareTypeURL)
 	{
-		BOOL isURLAlreadyShortened = [self shortenURL];
-		result = isURLAlreadyShortened;
-		
+		isURLAlreadyShortened = [self shortenURL];
 	}
     
     NSString *hashtags = [self tagStringJoinedBy:@" " allowedCharacters:[NSCharacterSet alphanumericCharacterSet] tagPrefix:@"#" tagSuffix:nil];
     
 	NSString *text = item.shareType == SHKShareTypeText ? item.text : item.title;
 	if (!text) text = @"";
-	NSString *tweetBody = [NSString stringWithFormat:@"%@%@%@", text, ([hashtags length] ? @" " : @""), hashtags];
+	NSString *url = isURLAlreadyShortened ? [NSString stringWithFormat:@" %@", [item.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] : @"";
+	NSString *tweetBody = [NSString stringWithFormat:@"%@%@%@%@", text, url, ([hashtags length] ? @" " : @""), hashtags];
 	
     [item setCustomValue:tweetBody forKey:@"status"];
     
-	return result;
+	return isURLAlreadyShortened;
 }
 
 #pragma mark -
@@ -355,7 +354,7 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 
 #pragma mark -
 
-- (BOOL)shortenURL
+- (BOOL)shortenURL // Returns isURLAlreadyShortened
 {	
 	NSString *bitLyLogin = SHKCONFIG(bitLyLogin);
 	NSString *bitLyKey = SHKCONFIG(bitLyKey);
@@ -363,7 +362,6 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 	
 	if (bitLyConfigured == NO || ![SHK connected])
 	{
-		[item setCustomValue:[NSString stringWithFormat:@"%@ %@", item.title ? item.title : item.text, [item.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] forKey:@"status"];
 		return YES;
 	}
 	

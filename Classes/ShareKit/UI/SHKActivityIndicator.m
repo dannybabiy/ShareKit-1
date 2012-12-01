@@ -34,6 +34,7 @@
 
 @synthesize centerMessageLabel, subMessageLabel;
 @synthesize spinner;
+@synthesize blockInteraction;
 
 static SHKActivityIndicator *_currentIndicator = nil;
 
@@ -56,7 +57,7 @@ static SHKActivityIndicator *_currentIndicator = nil;
 		_currentIndicator.opaque = NO;
 		_currentIndicator.alpha = 0;		
 		_currentIndicator.layer.cornerRadius = 10;		
-		_currentIndicator.userInteractionEnabled = NO;
+		_currentIndicator.userInteractionEnabled = YES;
 		_currentIndicator.autoresizesSubviews = YES;
 		_currentIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |  UIViewAutoresizingFlexibleTopMargin |  UIViewAutoresizingFlexibleBottomMargin;		
 		[_currentIndicator setProperRotation:NO];
@@ -68,6 +69,10 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	}
 	
 	return _currentIndicator;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    return blockInteraction;
 }
 
 #pragma mark -
@@ -115,6 +120,8 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	self.alpha = 0;
 	
 	[UIView commitAnimations];
+	
+	blockInteraction = NO;
 }
 
 - (void)persist
@@ -136,6 +143,11 @@ static SHKActivityIndicator *_currentIndicator = nil;
 		return;
 	
 	[_currentIndicator removeFromSuperview];
+}
+
+- (void)displayActivity:(NSString *)m blockInteraction:(BOOL)block {
+	[self displayActivity:m];
+	blockInteraction = block;
 }
 
 - (void)displayActivity:(NSString *)m

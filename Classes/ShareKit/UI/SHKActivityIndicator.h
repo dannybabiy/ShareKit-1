@@ -34,11 +34,13 @@
 	UILabel *subMessageLabel;
 	
 	UIActivityIndicatorView *spinner;
+	
+	BOOL blockInteraction;
 }
 
 @property (nonatomic, retain) UILabel *centerMessageLabel;
 @property (nonatomic, retain) UILabel *subMessageLabel;
-
+@property (nonatomic, assign) BOOL blockInteraction;
 @property (nonatomic, retain) UIActivityIndicatorView *spinner;
 
 
@@ -49,6 +51,7 @@
 - (void)hide;
 - (void)persist;
 - (void)hidden;
+- (void)displayActivity:(NSString *)m blockInteraction:(BOOL)block;
 - (void)displayActivity:(NSString *)m;
 - (void)displayCompleted:(NSString *)m;
 - (void)setCenterMessage:(NSString *)message;

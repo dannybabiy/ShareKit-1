@@ -30,11 +30,19 @@
 
 #define SHKdegreesToRadians(x) (M_PI * x / 180.0)
 
+@interface SHKActivityIndicator ()
+@property (nonatomic, assign) BOOL blockInteraction;
+@property (nonatomic, copy) SHKActivityCancelBlock cancelBlock;
+@property (nonatomic, retain) UIButton *cancelButton;
+@end
+
 @implementation SHKActivityIndicator
 
 @synthesize centerMessageLabel, subMessageLabel;
 @synthesize spinner;
 @synthesize blockInteraction;
+@synthesize cancelButton;
+@synthesize cancelBlock;
 
 static SHKActivityIndicator *_currentIndicator = nil;
 
@@ -84,6 +92,8 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	[centerMessageLabel release];
 	[subMessageLabel release];
 	[spinner release];
+	[cancelButton release];
+	[cancelBlock release];
 	
 	[super dealloc];
 }
@@ -121,7 +131,8 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	
 	[UIView commitAnimations];
 	
-	blockInteraction = NO;
+	self.blockInteraction = NO;
+	[self cancelable:NO];
 }
 
 - (void)persist
@@ -143,6 +154,36 @@ static SHKActivityIndicator *_currentIndicator = nil;
 		return;
 	
 	[_currentIndicator removeFromSuperview];
+}
+
+- (void)displayActivity:(NSString *)m blockInteraction:(BOOL)shouldBlock cancel:(SHKActivityCancelBlock)cancel {
+	[self displayActivity:m];
+	self.blockInteraction = shouldBlock;
+	self.cancelBlock = cancel;
+	[self cancelable:YES];
+}
+
+- (void)cancelable:(BOOL)allow {
+	if (allow && cancelButton == nil) {
+		self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		UIImage *image = [UIImage imageNamed:@"ShareKit.bundle/activity-close-button.png"];
+		int inset = 4;
+		cancelButton.frame = CGRectIntegral(CGRectMake(self.bounds.size.width-image.size.width/2-inset,
+											-image.size.height/2+inset,
+											image.size.width,
+											image.size.height));
+		[cancelButton setImage:image forState:UIControlStateNormal];
+		[cancelButton addTarget:self action:@selector(didCancel) forControlEvents:UIControlEventTouchUpInside];
+	}
+	if (allow) {
+		[self addSubview:cancelButton];
+	} else {
+		[cancelButton removeFromSuperview];
+	}
+}
+
+- (void)didCancel {
+	if (cancelBlock) cancelBlock();
 }
 
 - (void)displayActivity:(NSString *)m blockInteraction:(BOOL)block {

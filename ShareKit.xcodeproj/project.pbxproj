@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		13295906165D9FAB00E0CA3F /* Facebook.h in Headers */ = {isa = PBXBuildFile; fileRef = 13295905165D9FAB00E0CA3F /* Facebook.h */; };
+		1399E59816762F11007C4FD8 /* activity-close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 1399E59616762F11007C4FD8 /* activity-close-button.png */; };
+		1399E59916762F11007C4FD8 /* activity-close-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1399E59716762F11007C4FD8 /* activity-close-button@2x.png */; };
+		1399E59C16762F83007C4FD8 /* activity-close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 1399E59616762F11007C4FD8 /* activity-close-button.png */; };
+		1399E59D16762F85007C4FD8 /* activity-close-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1399E59716762F11007C4FD8 /* activity-close-button@2x.png */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -451,6 +455,8 @@
 
 /* Begin PBXFileReference section */
 		13295905165D9FAB00E0CA3F /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "../../../../../Submodules/facebook-ios-sdk/src/Facebook.h"; sourceTree = "<group>"; };
+		1399E59616762F11007C4FD8 /* activity-close-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity-close-button.png"; path = "ShareKitLibraryResources/activity-close-button.png"; sourceTree = SOURCE_ROOT; };
+		1399E59716762F11007C4FD8 /* activity-close-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity-close-button@2x.png"; path = "ShareKitLibraryResources/activity-close-button@2x.png"; sourceTree = SOURCE_ROOT; };
 		1A52EDF415CB032B00A737D8 /* SHKKippt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKKippt.h; sourceTree = "<group>"; };
 		1A52EDF515CB032B00A737D8 /* SHKKippt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKKippt.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1750,6 +1756,8 @@
 			isa = PBXGroup;
 			children = (
 				7AB536131552E26800171BCE /* ShareKitLibraryResources-Info.plist */,
+				1399E59616762F11007C4FD8 /* activity-close-button.png */,
+				1399E59716762F11007C4FD8 /* activity-close-button@2x.png */,
 			);
 			name = ShareKitLibraryResources;
 			path = ShareKit;
@@ -2870,6 +2878,8 @@
 				43A5382811DBE480004A1712 /* example.pdf in Resources */,
 				43A5382911DBE480004A1712 /* sanFran.jpg in Resources */,
 				43C91D1D11EB963600F31FAE /* MainWindow-iPad.xib in Resources */,
+				1399E59816762F11007C4FD8 /* activity-close-button.png in Resources */,
+				1399E59916762F11007C4FD8 /* activity-close-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2877,6 +2887,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1399E59C16762F83007C4FD8 /* activity-close-button.png in Resources */,
+				1399E59D16762F85007C4FD8 /* activity-close-button@2x.png in Resources */,
 				7A2882491553CC61007DC379 /* ShareKit.bundle in Resources */,
 				7A2882571553D7E1007DC379 /* SHKSharers.plist in Resources */,
 				7A2882581553FEE6007DC379 /* SHKEvernote.md in Resources */,
